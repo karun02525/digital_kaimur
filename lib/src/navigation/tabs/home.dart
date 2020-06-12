@@ -1,8 +1,10 @@
 import 'package:digitalkaimur/res/strings.dart';
+import 'package:digitalkaimur/widgets/dialog_widgets.dart';
 import 'package:digitalkaimur/widgets/toolbar_text_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import '../drawer_navigation.dart';
 
 
@@ -12,44 +14,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<SelectCityModel> cityList;
-  SelectCityModel selectedCity;
-
-
-  @override
-  void initState() {
-    super.initState();
-    cityList = SelectCityModel.getCityList();
-  }
-
-
-  setSelectedCity(SelectCityModel model) {
-    setState(() {
-      selectedCity  = model;
-    });
-  }
-
-
-  List<Widget> createRadioListUsers() {
-    List<Widget> widgets = [];
-    for (SelectCityModel model in cityList) {
-      widgets.add(
-        RadioListTile(
-          value: model,
-          groupValue: selectedCity,
-          title: Text(model.eng),
-          subtitle: Text(model.hi),
-          onChanged: (currentUser) {
-            print("Current User ${currentUser.hi}");
-            setSelectedCity(currentUser);
-          },
-          selected: selectedCity == model,
-          activeColor: Colors.green,
-        ),
-      );
-    }
-    return widgets;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,14 +51,11 @@ class _HomeState extends State<Home> {
         drawer: NavigationDrawer(),
         body: Container(
            color: Colors.white,
-           child: Column(
-             children: createRadioListUsers(),
-           ),
-        ));
+           child:DialogWidget())
+    );
   }
 
   void getSelectCity() {
-
       showGeneralDialog(
           context: context,
           barrierDismissible: true,
@@ -133,35 +94,8 @@ class _HomeState extends State<Home> {
           });
     }
 
-
-
-
-
-
 }
 
-
-
-class SelectCityModel{
-  int id;
-  String eng;
-  String hi;
-  SelectCityModel({this.id,this.eng,this.hi});
-
-  static List<SelectCityModel> getCityList(){
-    return [
-      SelectCityModel(id:1,eng:'Pusauli',hi:'पुसौली'),
-      SelectCityModel(id:2,eng:'Mohania',hi:'मोहनिया'),
-      SelectCityModel(id:3,eng:'Kudra',hi:'कुदरा'),
-      SelectCityModel(id:4,eng:'Bhabhua',hi:'भभुआ'),
-      SelectCityModel(id:5,eng:'Ramgarh',hi:'रामगढ'),
-      SelectCityModel(id:6,eng:'Nuaon',hi:'नुआओं'),
-      SelectCityModel(id:7,eng:'Durgawati',hi:'दुर्गावती'),
-      SelectCityModel(id:8,eng:'Chand',hi:'चाँद'),
-      SelectCityModel(id:9,eng:'Sonhan',hi:'सोनहन'),
-    ];
-  }
-}
 
 /*
 SimpleItem(1,'Pusauli','पुसौली'),
