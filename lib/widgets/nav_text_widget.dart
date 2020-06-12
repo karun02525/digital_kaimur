@@ -1,4 +1,3 @@
-import 'package:digitalkaimur/res/fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +9,7 @@ class TextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Text(title,
-          style: AppFonts.instance.appNav,
+
       )
     );
   }

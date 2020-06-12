@@ -10,7 +10,7 @@ class TextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Text(title,
-          style: AppFonts.instance.appToolbar,
+
       )
     );
   }
