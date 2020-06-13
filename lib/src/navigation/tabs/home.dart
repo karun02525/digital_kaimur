@@ -51,7 +51,9 @@ class _HomeState extends State<Home> {
                         barrierDismissible: false,
                         builder: (_) {
                           return DialogWidget(cityList, cityId);
-                        }).then((value) => {selectCity(value)});
+                        }).then((value) => {
+                          selectCity(value)
+                        });
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
