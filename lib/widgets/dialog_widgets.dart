@@ -10,11 +10,18 @@ class DialogWidget extends StatefulWidget {
 }
 
 class _DialogWidgetState extends State<DialogWidget> {
-  int selectId=1;
+  int selectId=0;
+  bool _isButtonDisabled=true;
+  bool _isButtonCancelDisabled=true;
 
   @override
   void initState() {
-    selectId=widget.cityId;
+    setState(() {
+      selectId=widget.cityId;
+      if(widget.cityId>0){
+        _isButtonCancelDisabled=false;
+      }
+    });
     super.initState();
   }
 
@@ -30,7 +37,10 @@ class _DialogWidgetState extends State<DialogWidget> {
       title: Text("Select City Name"),
       content: SingleChildScrollView(
         child:Container(
+          margin: EdgeInsets.only(left: 20.0,right: 20.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children:
             widget.cityList.map((data) => RadioListTile(
               title: Text("${data.eng} (${data.hi} )"),
@@ -40,6 +50,15 @@ class _DialogWidgetState extends State<DialogWidget> {
               selected: selectId == data.cid,
               onChanged: (val) {
                 setState(() {
+                  if(widget.cityId>0){
+                    _isButtonCancelDisabled=false;
+                  }
+                  if(widget.cityId==data.cid){
+                    _isButtonDisabled=true;
+                  }else{
+                    _isButtonDisabled=false;
+                  }
+
                   debugPrint("select item: ${data.eng}");
                   selectId = data.cid;
                   debugPrint("select item selectId : $selectId");
@@ -52,11 +71,26 @@ class _DialogWidgetState extends State<DialogWidget> {
       actions: <Widget>[
         MaterialButton(
           elevation: 6.0,
-          child: Text("Done"),
-          onPressed: () {
+
+          color: Colors.blue,
+          child: Text("Cancel"),
+          onPressed:  _isButtonCancelDisabled ? null : () {
             Navigator.of(context).pop(selectId);
           },
-        )
+        ),
+        Spacer(),
+        Padding(
+          padding: const EdgeInsets.only(left:8.0,right: 10.0),
+          child: MaterialButton(
+            elevation: 6.0,
+            disabledColor: Colors.grey,
+            color: Colors.green,
+            child: Text("Done"),
+            onPressed:  _isButtonDisabled ? null : () {
+              Navigator.of(context).pop(selectId);
+            },
+          ),
+        ),
       ],
     ));
   }
@@ -84,3 +118,40 @@ class SelectCityModel{
   }
 }
 
+
+/*
+  appBar: AppBar(
+          titleSpacing: 2.0,
+          title: Column(
+            children: <Widget>[
+              TextWidget(AppString.appName),
+              InkWell(
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (_) {
+                      return DialogWidget(cityList,cityId);
+                    }).then((value) => {
+                         selectCity(value)
+                    });
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text(selectName,style: TextStyle(fontSize: 16.0),),
+                      Icon(Icons.arrow_drop_down)
+                    ],
+                  )),
+            ],
+          ),
+          centerTitle: true,
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.search),
+            )
+          ],
+        ),
+},*/
