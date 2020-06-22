@@ -1,9 +1,10 @@
-import 'package:digitalkaimur/res/strings.dart';
-import 'package:digitalkaimur/widgets/nav_text_widget.dart';
+import 'package:digitalkaimur/src/main/ui/navigation/tabs/home.dart';
+import 'package:digitalkaimur/src/main/ui/widgets/text_widget.dart';
+import 'package:digitalkaimur/src/res/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-import 'tabs/home.dart';
 
 class TabNavController extends StatefulWidget {
   @override
@@ -35,27 +36,27 @@ class _TabNavControllerState extends State<TabNavController> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: TextWidget(AppString.tabHome),
+            title: TextWidget(fontSize:10,title:AppString.tabHome,isBold: true,),
             backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.local_grocery_store),
-            title: TextWidget(AppString.tabStore),
+            title: TextWidget(fontSize:10,title:AppString.tabStore,isBold: true),
             backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.movie_creation),
-            title: TextWidget(AppString.tabNews),
+            title: TextWidget(fontSize:10,title:AppString.tabNews,isBold: true),
             backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
-            title: TextWidget(AppString.tabNotification),
+            title: TextWidget(fontSize:10,title:AppString.tabNotification,isBold: true),
             backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            title: TextWidget(AppString.tabProfile),
+            title: TextWidget(fontSize:10,title:AppString.tabProfile,isBold: true),
             backgroundColor: Colors.blue,
           ),
         ],

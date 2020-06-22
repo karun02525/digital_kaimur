@@ -1,5 +1,6 @@
-import 'package:digitalkaimur/res/colors.dart';
-import 'file:///D:/project/flutter_project/flutter_app/Digital_Kaimur/digital_kaimur/lib/src/navigation/tab_nav_controller.dart';
+import 'package:digitalkaimur/src/main/ui/navigation/tab_nav.dart';
+import 'package:digitalkaimur/src/main/ui/product/global_search.dart';
+import 'package:digitalkaimur/src/res/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,10 @@ class LaunchPage extends StatelessWidget {
               primaryColor: AppColor.appColor, accentColor: Colors.blue),
                 debugShowCheckedModeBanner: false,
            home:TabNavController() ,
+      routes: {
+        '/home':(context) => TabNavController(),
+        '/search':(context) => GlobalSearch()
+      },
     );
   }
 }
