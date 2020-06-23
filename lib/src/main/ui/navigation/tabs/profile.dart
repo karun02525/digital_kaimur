@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:digitalkaimur/src/main/config/constraints.dart';
+import 'package:digitalkaimur/src/res/app_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -139,6 +140,12 @@ class ProfileWidget extends StatelessWidget {
       ItemWidget(
         name: 'Help',
         icon: Icons.help,
+        onClick: () {
+          Global.toast('Setting');
+        },
+      ), ItemWidget(
+        name: 'Log Out',
+        icon: AppIcons.ic_logout,
         onClick: () {
           Global.toast('Setting');
         },
