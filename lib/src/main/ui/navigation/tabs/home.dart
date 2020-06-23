@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:digitalkaimur/src/main/config/constraints.dart';
+import 'package:digitalkaimur/src/main/ui/widgets/carousel_slider.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/dialog_widgets.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/grid_dashboard_widget.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/text_widget.dart';
@@ -38,14 +39,14 @@ class _HomeState extends State<Home> {
 
   void getCategoryAllAsync() async {
     try {
-
       Map<String, String> requestHeaders = {
         'Content-type': 'application/json',
         'Accept': 'application/json',
         'authorization': 'Bearer ${Config.token}'
       };
 
-      final response = await dio.get(Config.getCategoryUrl,options: Options(headers: requestHeaders));
+      final response = await dio.get(Config.getCategoryUrl,
+          options: Options(headers: requestHeaders));
       if (response.statusCode == 200) {
         final responseBody = jsonDecode(jsonEncode(response.data));
         if (responseBody['status']) {
@@ -130,10 +131,35 @@ class _HomeState extends State<Home> {
             ? Container(child: Center(child: CupertinoActivityIndicator()))
             : categoryList.length == 0
                 ? Container(
-                    child: Center(child: TextWidget(title: "No Data Available")))
+                    child:
+                        Center(child: TextWidget(title: "No Data Available")))
                 : Container(
                     color: Colors.grey[200],
-                    child: GridDashboard(categoryList)));
+                    child: Container(
+                        child: CustomScrollView(
+                      slivers: <Widget>[
+                        SliverList(
+                          delegate: SliverChildListDelegate(
+                            [
+                              FullscreenSlider(),
+                              SizedBox(height: 5.0),
+                            ],
+                          ),
+                        ),
+                        SliverGrid(
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+                          delegate: SliverChildBuilderDelegate(
+                                (BuildContext context, int index) {
+                                  return GridDashboard(categoryList[index]);
+                            },
+                            childCount: categoryList.length,
+                          ),
+                        )
+
+
+
+                      ],
+                    ))));
 
     //  FullscreenSlider(),
   }
