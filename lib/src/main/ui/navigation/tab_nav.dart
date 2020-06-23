@@ -1,4 +1,6 @@
 import 'package:digitalkaimur/src/main/ui/navigation/tabs/home.dart';
+import 'package:digitalkaimur/src/main/ui/navigation/tabs/notifications.dart';
+import 'package:digitalkaimur/src/main/ui/navigation/tabs/profile.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/text_widget.dart';
 import 'package:digitalkaimur/src/res/strings.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,8 +21,8 @@ class _TabNavControllerState extends State<TabNavController> {
     Home(),
     Container(color: Colors.red,),
     Container(color: Colors.green,),
-    Container(color: Colors.blue,),
-    Container(color: Colors.orange,),
+    Notifications(),
+    ProfileWidget(),
   ];
 
   @override
