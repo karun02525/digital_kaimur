@@ -38,7 +38,7 @@ class ProfileWidget extends StatelessWidget {
                 child: Column(
                     children: [getProfileImage(Config.avatar1), setName()])),
             SizedBox(height: 30.0),
-            setMenu()
+            setMenu(context)
           ],
         ),
       ),
@@ -104,7 +104,7 @@ class ProfileWidget extends StatelessWidget {
         child: Image(image: AssetImage('assets/images/user_icon.png')));
   }
 
-  Widget setMenu() {
+  Widget setMenu(cnt) {
     return Expanded(
         child:
             GridView.count(crossAxisCount: 2, childAspectRatio: 2.2, children: [
@@ -119,7 +119,7 @@ class ProfileWidget extends StatelessWidget {
         name: 'For Vender',
         icon: Icons.shopping_basket,
         onClick: () {
-          Global.toast('Vender');
+          _modalBottomSheetMenu(cnt);
         },
       ),
       ItemWidget(
@@ -145,6 +145,23 @@ class ProfileWidget extends StatelessWidget {
       ),
     ]));
   }
+
+
+  void _modalBottomSheetMenu(context){
+    final double height = MediaQuery.of(context).size.height;
+    showModalBottomSheet(
+        context: context,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+        ),
+        builder: (BuildContext context) {
+          return Container(
+            height: height,
+          );
+        });
+  }
+
+
 }
 
 class ItemWidget extends StatelessWidget {
