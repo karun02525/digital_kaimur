@@ -51,6 +51,7 @@ dev_dependencies:
   path: any
   progress_dialog: ^1.2.4
   carousel_slider: ^2.2.1
+  upi_india: ^2.1.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
