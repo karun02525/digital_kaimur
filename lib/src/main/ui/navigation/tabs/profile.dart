@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:digitalkaimur/src/main/config/constraints.dart';
+import 'package:digitalkaimur/src/main/ui/vender/bottomsheet_dialog.dart';
 import 'package:digitalkaimur/src/res/app_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -163,7 +164,8 @@ class ProfileWidget extends StatelessWidget {
         ),
         builder: (BuildContext context) {
           return Container(
-            height: height,
+            height: height/2,
+            child: VenderVerify(),
           );
         });
   }
