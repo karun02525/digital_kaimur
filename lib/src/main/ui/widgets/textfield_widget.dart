@@ -9,15 +9,23 @@ class TextFieldWidget extends StatelessWidget {
   final Function onChanged;
   final TextEditingController controller;
   Color color;
+  TextInputType keyboardType;
+  bool obscureText;
+  int maxLength;
+  double letterSpacing;
 
-  TextFieldWidget({
-    this.isRound = true,
-    this.hintText,
-    this.minLine,
-    this.onChanged,
-    this.controller,
-    this.color,
-  });
+  TextFieldWidget(
+      {this.isRound = true,
+      this.hintText,
+      this.minLine,
+      this.onChanged,
+      this.controller,
+      this.color,
+      this.keyboardType,
+      this.obscureText = false,
+      this.maxLength,
+      this.letterSpacing,
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +33,13 @@ class TextFieldWidget extends StatelessWidget {
       return Container(
         child: TextField(
           maxLines: minLine,
+          maxLength: maxLength,
           onChanged: onChanged,
+          obscureText: obscureText,
+          keyboardType: keyboardType,
           style: TextStyle(
               fontFamily: AppFonts.font,
+              letterSpacing:letterSpacing,
               fontSize: 15,
               fontWeight: FontWeight.w100),
           textCapitalization: TextCapitalization.sentences,
@@ -36,6 +48,7 @@ class TextFieldWidget extends StatelessWidget {
           decoration: InputDecoration(
               contentPadding: EdgeInsets.fromLTRB(10.0, 10.0, 20.0, 10.0),
               hintText: hintText,
+              counterText: '',
               border: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.red[200], width: 8.0),
               )),

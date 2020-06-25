@@ -1,3 +1,4 @@
+import 'package:digitalkaimur/src/main/ui/authentication/login_screen.dart';
 import 'package:digitalkaimur/src/main/ui/navigation/tab_nav.dart';
 import 'package:digitalkaimur/src/main/ui/product/global_search.dart';
 import 'file:///D:/project/flutter_project/flutter_app/Digital_Kaimur/digital_kaimur/lib/src/main/ui/navigation/tabs/profile.dart';
@@ -14,7 +15,7 @@ class LaunchPage extends StatelessWidget {
           theme: ThemeData(
               primaryColor: AppColor.appColor, accentColor: Colors.blue),
                 debugShowCheckedModeBanner: false,
-           home:TabNavController() ,
+           home:LoginScreen() ,
       routes: {
         '/home':(context) => TabNavController(),
         '/search':(context) => GlobalSearch()

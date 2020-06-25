@@ -34,7 +34,7 @@ class _CustomDialogState extends State<CustomDialog> {
       receiverUpiId: 'karun25@ybl',
       receiverName: 'Karun Kumar',
       transactionRefId: 'TestingUpiIndiaPlugin',
-      transactionNote: 'Not actual. Just an example.',
+      transactionNote: 'This is required for your shop',
       amount: 1.00,
     )
         .then((response) {
@@ -60,7 +60,6 @@ class _CustomDialogState extends State<CustomDialog> {
       print("UPI_INDIA_FINAL_RESPONSE: invalid_parameters");
       return UpiResponse('invalid_parameters');
     });
-    ;
   }
 
   Widget displayUpiApps() {
