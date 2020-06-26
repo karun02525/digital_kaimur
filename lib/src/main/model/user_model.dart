@@ -1,7 +1,7 @@
 
 import 'dart:convert';
 
-UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
+UserModel userModelFromJson(String str) => UserModel.fromJson(jsonDecode(str));
 
 String userModelToJson(UserModel data) => json.encode(data.toJson());
 
@@ -14,12 +14,12 @@ class UserModel {
 
   bool status;
   String message;
-  Data data;
+  LoginData data;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
     status: json["status"],
     message: json["message"],
-    data: Data.fromJson(json["data"]),
+    data: LoginData.fromJson(json["data"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -29,8 +29,8 @@ class UserModel {
   };
 }
 
-class Data {
-  Data({
+class LoginData {
+  LoginData({
     this.uid,
     this.name,
     this.email,
@@ -40,7 +40,6 @@ class Data {
     this.token,
     this.address,
     this.pincode,
-    this.createAt,
   });
 
   String uid;
@@ -48,13 +47,12 @@ class Data {
   String email;
   String mobile;
   String gender;
-  dynamic userAvatar;
+  String userAvatar;
   String token;
-  dynamic address;
-  dynamic pincode;
-  DateTime createAt;
+  String address;
+  String pincode;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory LoginData.fromJson(Map<String, dynamic> json) => LoginData(
     uid: json["uid"],
     name: json["name"],
     email: json["email"],
@@ -64,7 +62,6 @@ class Data {
     token: json["token"],
     address: json["address"],
     pincode: json["pincode"],
-    createAt: DateTime.parse(json["create_at"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -77,6 +74,5 @@ class Data {
     "token": token,
     "address": address,
     "pincode": pincode,
-    "create_at": createAt.toIso8601String(),
   };
 }
