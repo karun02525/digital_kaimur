@@ -3,12 +3,12 @@ import 'package:digitalkaimur/src/main/service/repositories/category_repository.
 import 'package:digitalkaimur/src/main/service/repositories/login_repository.dart';
 import 'package:flutter/material.dart';
 
-class RegisterPage extends StatefulWidget {
+class ListRegisterPage extends StatefulWidget {
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  _ListRegisterPageState createState() => _ListRegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _ListRegisterPageState extends State<ListRegisterPage> {
   Future<List<Datum>> listFuture;
   CategoryRepository _repository;
 

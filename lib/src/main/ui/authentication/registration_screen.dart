@@ -5,13 +5,15 @@ import 'package:digitalkaimur/src/main/utils/global.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
+  var _editName = TextEditingController();
   var _editMobile = TextEditingController();
+  var _editEmail = TextEditingController();
   var _editPassword = TextEditingController();
   bool isLoading = false;
   LoginRespository _repository;
@@ -22,20 +24,26 @@ class _LoginScreenState extends State<LoginScreen> {
     _repository = LoginRespository();
   }
 
-  void doLogin() {
+  void doRegister() {
+    var name = _editName.text.toString();
     var mob = _editMobile.text.toString();
+    var email = _editEmail.text.toString();
     var pass = _editPassword.text.toString();
-    if (mob.isEmpty) {
+    if (name.isEmpty) {
+      Global.toast("Please enter mobile");
+    } else if (mob.isEmpty) {
       Global.toast("Please enter mobile");
     } else if (mob.length != 10) {
       Global.toast("Please enter valid mobile");
-    } else if (pass.isEmpty) {
+    } else if (email.isEmpty) {
+      Global.toast("Please enter password");
+    }else if (pass.isEmpty) {
       Global.toast("Please enter password");
     } else if (pass.length < 7) {
       Global.toast("Please enter valid password should be more than 8 chars");
     } else {
       isLoading=true;
-      _repository.loginUser(mob,pass).then((value) {
+      _repository.registerUser(name,mob,email,pass,"Male").then((value) {
         setState(() {
           isLoading=false;
            if(value){
@@ -74,12 +82,26 @@ class _LoginScreenState extends State<LoginScreen> {
             ),*/
             SizedBox(height: 40.0),
             TextFieldWidget(
+                hintText: "Enter full name",
+                controller: _editName,
+                letterSpacing: 1.0,
+                minLine: 1),
+            SizedBox(height: 5.0),
+            TextFieldWidget(
                 hintText: "Enter Mobile Number",
                 controller: _editMobile,
                 maxLength: 10,
                 letterSpacing: 2.0,
                 color: Colors.white,
                 keyboardType: TextInputType.number),
+            SizedBox(height: 5.0),
+            TextFieldWidget(
+                hintText: "Enter email id",
+                controller: _editEmail,
+                letterSpacing: 1.0,
+                minLine: 1,
+                keyboardType: TextInputType.emailAddress
+            ),
             SizedBox(height: 5.0),
             TextFieldWidget(
                 hintText: "Enter Password",
@@ -91,8 +113,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 visible: isLoading,
                 child: CupertinoActivityIndicator(radius: 15.0)),
             ButtonWidget(
-              title: 'Login',
-              onPressed: doLogin,
+              title: 'Register',
+              onPressed: doRegister,
               color: Colors.blue,
             )
           ],

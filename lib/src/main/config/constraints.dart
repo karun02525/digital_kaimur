@@ -11,6 +11,7 @@ class Config{
     static const String getCategoryUrl=baseUrl+'/category/get-category';
     //static const String getCategoryUrl='https://raw.githubusercontent.com/kaju02525/API-Test/master/category.json';
     static const String loginUrl=baseUrl+'/authenticate/login';
+    static const String registerUrl=baseUrl+'/authenticate/register';
 
 
 
