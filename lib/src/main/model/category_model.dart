@@ -13,12 +13,12 @@ class CategoryModel {
 
   bool status;
   String message;
-  List<Datum> data;
+  List<DataList> data;
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) => CategoryModel(
     status: json["status"],
     message: json["message"],
-    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+    data: List<DataList>.from(json["data"].map((x) => DataList.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -28,8 +28,8 @@ class CategoryModel {
   };
 }
 
-class Datum {
-  Datum({
+class DataList {
+  DataList({
     this.categoryId,
     this.categoryName,
     this.categoryAvatar,
@@ -43,7 +43,7 @@ class Datum {
   int categoryPostion;
   DateTime createAt;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory DataList.fromJson(Map<String, dynamic> json) => DataList(
     categoryId: json["category_id"],
     categoryName: json["category_name"],
     categoryAvatar: json["category_avatar"],

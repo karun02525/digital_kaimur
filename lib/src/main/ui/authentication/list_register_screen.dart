@@ -1,6 +1,5 @@
 import 'package:digitalkaimur/src/main/model/category_model.dart';
-import 'package:digitalkaimur/src/main/service/repositories/category_repository.dart';
-import 'package:digitalkaimur/src/main/service/repositories/login_repository.dart';
+import 'package:digitalkaimur/src/main/repositories/category_repository.dart';
 import 'package:flutter/material.dart';
 
 class ListRegisterPage extends StatefulWidget {
@@ -9,13 +8,12 @@ class ListRegisterPage extends StatefulWidget {
 }
 
 class _ListRegisterPageState extends State<ListRegisterPage> {
-  Future<List<Datum>> listFuture;
+  Future<List<DataList>> listFuture;
   CategoryRepository _repository;
 
   @override
   void initState() {
     super.initState();
-    LoginRespository().loginUser('8920828585', '11111111');
     _repository = CategoryRepository();
     listFuture = _repository.findAllCategory();
   }
@@ -25,7 +23,7 @@ class _ListRegisterPageState extends State<ListRegisterPage> {
     return Scaffold(
       body: FutureBuilder(
         future: this.listFuture,
-        builder: (context, AsyncSnapshot<List<Datum>> snapshot) {
+        builder: (context, AsyncSnapshot<List<DataList>> snapshot) {
           if (!snapshot.hasData) {
             return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
@@ -68,7 +66,7 @@ _loading=false;
             child: ListView.builder(
                 itemCount:null==list? 0:list.length,
                 itemBuilder: (context,index){
-                  Datum item= list[index];
+                  DataList item= list[index];
                  return ListTile(
                     title: Text(item.categoryPostion.toString()),
                     subtitle: Text(item.categoryName),

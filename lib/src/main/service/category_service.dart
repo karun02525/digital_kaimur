@@ -13,7 +13,7 @@ import 'package:http/http.dart' as http;
 
 
 class Service{
-    static Future<List<Datum>> getCategory() async{
+    static Future<List<DataList>> getCategory() async{
       try {
         final response = await Dio().get(Config.getCategoryUrl);
         debugPrint("Category response: "+Config.getCategoryUrl);
@@ -21,10 +21,10 @@ class Service{
         if (response.statusCode == 200) {
               return categoryModelFromJson(response.data).data;
         } else {
-          return List<Datum>();
+          return List<DataList>();
         }
       } on Exception catch (e) {
-        return List<Datum>();
+        return List<DataList>();
       }
     }
 

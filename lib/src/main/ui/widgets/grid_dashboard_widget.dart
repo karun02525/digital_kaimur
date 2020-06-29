@@ -1,4 +1,5 @@
 import 'package:digitalkaimur/src/main/config/constraints.dart';
+import 'package:digitalkaimur/src/main/model/category_model.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/text_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +7,8 @@ import 'package:flutter/rendering.dart';
 import 'image_load_widget.dart';
 
 class GridDashboard extends StatelessWidget {
-  final dynamic categoryList;
-  GridDashboard(this.categoryList);
+  final DataList item;
+  GridDashboard(this.item);
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +30,12 @@ class GridDashboard extends StatelessWidget {
                     height: 60.0,
                     width: 60.0,
                     child: ImageLoadWidget(
-                        imageUrl: Config.baseImageUrl +
-                            categoryList['category_avatar'])),
+                        imageUrl: Config.baseImageUrl + item.categoryAvatar)),
                 SizedBox(height: 5.0),
                 Padding(
                   padding: EdgeInsets.only(left: 2.0, right: 2.0),
                   child: TextWidget(
-                    title: categoryList['category_name'],
+                    title: item.categoryName,
                     isBold: true,
                     fontSize: 12.0,
                   ),

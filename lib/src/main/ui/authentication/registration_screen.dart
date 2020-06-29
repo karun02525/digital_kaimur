@@ -1,5 +1,4 @@
-import 'package:digitalkaimur/src/main/service/repositories/login_repository.dart';
-import 'package:digitalkaimur/src/main/ui/navigation/tab_nav.dart';
+import 'package:digitalkaimur/src/main/repositories/login_repository.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/button_widget.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/text_widget.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/textfield_widget.dart';
