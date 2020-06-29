@@ -5,7 +5,7 @@ class Config{
     static const api_youtube='AIzaSyAiSJV9ZHpFN8AwzpUDyorMVegUMS1corw';
     static const String base64Prefix='data:image/png;base64,';
 
-    static const baseUrl='http://192.168.1.16:8080';
+    static const baseUrl='http://192.168.1.4:8080';
     static const baseImageUrl=baseUrl+'/category/image-category/';
 
     static const String getCategoryUrl=baseUrl+'/category/get-category';

@@ -1,5 +1,9 @@
 import 'package:digitalkaimur/src/main/service/repositories/login_repository.dart';
+import 'package:digitalkaimur/src/main/ui/authentication/registration_screen.dart';
+import 'package:digitalkaimur/src/main/ui/navigation/tab_nav.dart';
+import 'package:digitalkaimur/src/main/ui/routes/slide_from_right_page_route.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/button_widget.dart';
+import 'package:digitalkaimur/src/main/ui/widgets/text_widget.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/textfield_widget.dart';
 import 'package:digitalkaimur/src/main/utils/global.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,18 +38,21 @@ class _LoginScreenState extends State<LoginScreen> {
     } else if (pass.length < 7) {
       Global.toast("Please enter valid password should be more than 8 chars");
     } else {
-      isLoading=true;
-      _repository.loginUser(mob,pass).then((value) {
+      setState(() {
+        Global.hideKeyboard();
+        isLoading = true;
+      });
+
+      _repository.loginUser(mob, pass).then((value) {
         setState(() {
-          isLoading=false;
-           if(value){
-             //.............
-           }
+          isLoading = false;
+          if (value) {
+            Global.navigateToHome(context);
+          }
         });
       });
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
           spacing: 10.0,
           runSpacing: 10.0,
           children: [
-            /*  TextWidget(
+              TextWidget(
               title: "DIGITAL KAIMUR",
               isBold: true,
               fontSize: 25.0,
@@ -71,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
               title: "Login to continue",
               isBold: true,
               fontSize: 14.0,
-            ),*/
+            ),
             SizedBox(height: 40.0),
             TextFieldWidget(
                 hintText: "Enter Mobile Number",
@@ -94,10 +101,24 @@ class _LoginScreenState extends State<LoginScreen> {
               title: 'Login',
               onPressed: doLogin,
               color: Colors.blue,
+            ),
+            ButtonWidget(
+              title: 'Register',
+              onPressed: () {
+                goToRegister(context);
+              },
+              color: Colors.blue,
             )
           ],
         ),
       )),
     );
   }
+
+
+void goToRegister(BuildContext context) {
+  Navigator.push(context, SlideFromRightPageRoute(
+      widget: RegisterScreen()
+  ));
+}
 }

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:digitalkaimur/src/main/utils/shared_preferences.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,16 @@ class NavigationDrawer extends StatefulWidget {
 }
 
 class _NavigationDrawerState extends State<NavigationDrawer> {
-  String name="Karun", email="kk", url="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+  String name,email,avatar;
+
+  @override
+  void initState() {
+    var pref=UserPreference();
+    name=pref.name;
+    email=pref.email;
+    avatar=pref.avatar;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,33 +56,48 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
 
   Widget getProfileImage() {
     return Container(
-      width: 120,
-      height: 120,
-      margin: EdgeInsets.only(top: 10.0, bottom: 10),
-      child: CachedNetworkImage(
+      width: 140,
+      height: 140,
+      margin: EdgeInsets.only(
+        top: 10.0,
+      ),
+      child: avatar == null
+          ? placeHolder()
+          : CachedNetworkImage(
         imageBuilder: (context, imageProvider) => Container(
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            //  borderRadius: BorderRadius.all(Radius.circular(70)),
-            border: Border.all(width: 2,color: Colors.yellow,style: BorderStyle.solid),
-            image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+            image:
+            DecorationImage(image: imageProvider, fit: BoxFit.cover),
           ),
         ),
-        placeholder: (context, url) => CircularProgressIndicator(),
-        imageUrl: url,
+        placeholder: (context, url) => placeHolder(),
+        imageUrl: avatar,
+      ),
+      decoration: new BoxDecoration(
+        shape: BoxShape.circle,
+        border: new Border.all(
+          color: Colors.blue,
+          width: 3.0,
+        ),
       ),
     );
+  }
+
+  Widget placeHolder() {
+    return ClipOval(
+        child: Image(image: AssetImage('assets/images/user_icon.png')));
   }
 
   Widget getInfo() {
     return Column(
       children: <Widget>[
         Text(
-          name.toUpperCase(),
+          name??'N.A',
           style: TextStyle(color: Colors.white, fontSize: 22.0),
         ),
         Text(
-          email,
+          email??'N.A',
           style: TextStyle(color: Colors.white, fontSize: 12.0),
         ),
       ],

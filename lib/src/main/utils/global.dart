@@ -1,4 +1,6 @@
 
+import 'package:digitalkaimur/src/main/ui/authentication/login_screen.dart';
+import 'package:digitalkaimur/src/main/ui/navigation/tab_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -28,6 +30,29 @@ class Global {
       duration: Duration(seconds: 3),
     ));
   }
+
+
+  static void hideKeyboard(){
+    FocusManager.instance.primaryFocus.unfocus();
+  }
+
+  static void navigateToLogin(BuildContext context){
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+            builder: (BuildContext context) => LoginScreen()
+        )
+    );
+  }
+
+  static void navigateToHome(BuildContext context){
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+            builder: (BuildContext context) => TabNavController()
+        )
+    );
+  }
+
+
 
 
   static List<String> imgList = [

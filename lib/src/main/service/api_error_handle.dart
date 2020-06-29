@@ -14,6 +14,8 @@ class ApiErrorHandel{
       Global.toast(errorMessage['message']);
     } else if (statusCode == 404) {
       Global.toast(errorMessage['message']);
+    } else if (statusCode == 422) {
+      Global.toast(errorMessage['message']);
     } else {
       Global.toast('Something went wrong');
     }

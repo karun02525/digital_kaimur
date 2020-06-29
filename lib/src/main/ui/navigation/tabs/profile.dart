@@ -1,13 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:digitalkaimur/src/main/config/constraints.dart';
+import 'package:digitalkaimur/src/main/ui/authentication/login_screen.dart';
+import 'package:digitalkaimur/src/main/ui/profile/info_profile.dart';
 import 'package:digitalkaimur/src/main/ui/vender/bottomsheet_dialog.dart';
+import 'package:digitalkaimur/src/main/utils/shared_preferences.dart';
 import 'package:digitalkaimur/src/res/app_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import '../../widgets/text_widget.dart';
 import '../../../utils/global.dart';
+import '../../widgets/text_widget.dart';
 
 class ProfileWidget extends StatelessWidget {
   @override
@@ -37,8 +37,7 @@ class ProfileWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Column(
-                    children: [getProfileImage(Config.avatar1), setName()])),
+                child: InfoProfile()),
             SizedBox(height: 30.0),
             setMenu(context)
           ],
@@ -47,64 +46,7 @@ class ProfileWidget extends StatelessWidget {
     );
   }
 
-  Widget setName() {
-    return Container(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 10.0,
-          ),
-          TextWidget(
-            title: 'Karun Kumar',
-            isBold: true,
-            color: Colors.white,
-            fontSize: 18.0,
-          ),
-          TextWidget(
-            title: 'karunkumar2525@gmail.com',
-            isBold: true,
-            color: Colors.white,
-            fontSize: 12.0,
-          ),
-        ],
-      ),
-    );
-  }
 
-  Widget getProfileImage(String url) {
-    return Container(
-      width: 140,
-      height: 140,
-      margin: EdgeInsets.only(
-        top: 10.0,
-      ),
-      child: url == null
-          ? placeHolder()
-          : CachedNetworkImage(
-              imageBuilder: (context, imageProvider) => Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image:
-                      DecorationImage(image: imageProvider, fit: BoxFit.cover),
-                ),
-              ),
-              placeholder: (context, url) => placeHolder(),
-              imageUrl: url,
-            ),
-      decoration: new BoxDecoration(
-        shape: BoxShape.circle,
-        border: new Border.all(
-          color: Colors.blue,
-          width: 3.0,
-        ),
-      ),
-    );
-  }
-
-  Widget placeHolder() {
-    return ClipOval(
-        child: Image(image: AssetImage('assets/images/user_icon.png')));
-  }
 
   Widget setMenu(cnt) {
     return Expanded(
@@ -148,7 +90,11 @@ class ProfileWidget extends StatelessWidget {
         name: 'Log Out',
         icon: AppIcons.ic_logout,
         onClick: () {
-          Global.toast('Setting');
+          UserPreference().clearSharedPreferences().then((value){
+            if(value){
+              Global.navigateToLogin(cnt);
+            }
+          });
         },
       ),
     ]));

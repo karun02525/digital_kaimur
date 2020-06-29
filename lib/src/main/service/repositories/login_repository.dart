@@ -37,7 +37,7 @@ class LoginRespository {
 
     var dio = CustomDio().instance;
     return dio.post(Config.registerUrl, data: params).then((res) async {
-      if (res.statusCode == 200) {
+      if (res.statusCode == 201) {
         LoginData result = userModelFromJson(jsonEncode(res.data)).data;
         saveData(result);
         return true;
