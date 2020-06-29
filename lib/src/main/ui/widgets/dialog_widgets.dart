@@ -1,3 +1,4 @@
+import 'package:digitalkaimur/src/main/ui/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
 class DialogWidget extends StatefulWidget {
@@ -34,7 +35,7 @@ class _DialogWidgetState extends State<DialogWidget> {
           return false;
         },
     child:AlertDialog(
-      title: Text("Select City Name"),
+      title: TextWidget(title:"Select City Name",isBold: true,fontSize: 16.0),
       content: SingleChildScrollView(
         child:Container(
           margin: EdgeInsets.only(left: 20.0,right: 20.0),
@@ -43,7 +44,7 @@ class _DialogWidgetState extends State<DialogWidget> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children:
             widget.cityList.map((data) => RadioListTile(
-              title: Text("${data.eng} (${data.hi} )"),
+              title: TextWidget(title:"${data.eng} (${data.hi} )",isBold: true,fontSize: 13.0,),
               groupValue: selectId,
               value: data.cid,
               activeColor: Colors.blueAccent,
