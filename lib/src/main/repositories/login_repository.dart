@@ -8,23 +8,22 @@ import 'package:digitalkaimur/src/main/utils/shared_preferences.dart';
 
 
 class LoginRespository {
-  Future<bool> loginUser(String mobile, String password) {
+  Future<bool> loginUser(String mobile, String password) async {
     var params = {"mobile": mobile, "password": password};
     var dio = CustomDio.withAuthentication().instance;
-    return dio.post(Config.loginUrl, data: params).then((res) async {
+    return await dio.post(Config.loginUrl, data: params).then((res) async {
       if (res.statusCode == 200) {
         LoginData result = userModelFromJson(jsonEncode(res.data)).data;
         saveData(result);
         return true;
       }
     }).catchError((e) {
-      ApiErrorHandel.errorHandel(e);
-      return false;
+      return ApiErrorHandel.errorHandel(e);
     });
   }
 
   //Register
-  Future<bool> registerUser(name, mob, email, pass, gender) {
+  Future<bool> registerUser(name, mob, email, pass, gender) async {
     var params = {
       "name": name,
       "mobile": mob,
@@ -34,7 +33,7 @@ class LoginRespository {
     };
 
     var dio =CustomDio.withAuthentication().instance;
-    return dio.post(Config.registerUrl, data: params).then((res) async {
+    return await dio.post(Config.registerUrl, data: params).then((res) async {
       if (res.statusCode == 201) {
         LoginData result = userModelFromJson(jsonEncode(res.data)).data;
         saveData(result);
@@ -42,7 +41,7 @@ class LoginRespository {
       }
     }).catchError((e) {
       ApiErrorHandel.errorHandel(e);
-      return false;
+      return ApiErrorHandel.errorHandel(e);
     });
   }
 
@@ -51,6 +50,7 @@ class LoginRespository {
     pref.name = res.name;
     pref.email = res.email;
     pref.name = res.name;
+    pref.mobile = res.mobile;
     pref.token = res.token;
     pref.avatar = res.userAvatar;
     pref.isLogin = true;

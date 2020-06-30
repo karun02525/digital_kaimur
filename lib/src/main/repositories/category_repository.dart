@@ -4,13 +4,12 @@ import 'package:digitalkaimur/src/main/service/api_error_handle.dart';
 import 'package:digitalkaimur/src/main/service/custom_dio.dart';
 
 class CategoryRepository{
-  Future<List<DataList>> findAllCategory() {
+  Future<List<DataList>> findAllCategory() async {
       var dio =CustomDio.withAuthentication().instance;
-     return dio.get(Config.getCategoryUrl).then((res){
+     return await dio.get(Config.getCategoryUrl).then((res){
         return CategoryModel.fromJson(res.data).data;
       }).catchError((e) {
-       ApiErrorHandel.errorHandel(e);
-       return false;
+       return ApiErrorHandel.errorHandel(e);
      });
   }
 }

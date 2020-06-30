@@ -1,3 +1,4 @@
+import 'package:digitalkaimur/src/main/utils/shared_preferences.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -6,7 +7,6 @@ class CustomDio{
   CustomDio(){
     _dio=Dio();
   }
-
 
   CustomDio.withAuthentication(){
     _dio=Dio();
@@ -18,15 +18,11 @@ class CustomDio{
   Dio get instance=>_dio;
 
   _onRequest(RequestOptions options) async {
-    SharedPreferences prefs= await SharedPreferences.getInstance();
-    var token=prefs.get('token');
-    options.headers['authorization']='Bearer '+token;
+    options.headers['authorization']='Bearer '+UserPreference().token;
   }
 
   _onResponse(Response e) {
-     print("############**********************");
      print(e.data);
-     print("############");
   }
 
   _onError(DioError e) {

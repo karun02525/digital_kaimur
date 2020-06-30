@@ -1,6 +1,5 @@
-import 'package:digitalkaimur/src/main/ui/authentication/login_screen.dart';
+import 'package:digitalkaimur/src/main/ui/profile/for_vender/create_vendor_bottomsheet.dart';
 import 'package:digitalkaimur/src/main/ui/profile/info_profile.dart';
-import 'package:digitalkaimur/src/main/ui/vender/bottomsheet_dialog.dart';
 import 'package:digitalkaimur/src/main/utils/shared_preferences.dart';
 import 'package:digitalkaimur/src/res/app_icons.dart';
 import 'package:flutter/cupertino.dart';
@@ -111,7 +110,7 @@ class ProfileWidget extends StatelessWidget {
         builder: (BuildContext context) {
           return Container(
             height: height/2,
-            child: VenderVerify(),
+            child: CreateVendor(),
           );
         });
   }

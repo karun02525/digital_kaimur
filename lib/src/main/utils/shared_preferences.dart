@@ -33,6 +33,14 @@ class UserPreference {
     return _prefs.getString('email');
   }
 
+  set mobile(String value) {
+    _prefs.setString('mobile', value);
+  }
+
+  get mobile {
+    return _prefs.getString('mobile');
+  }
+
   set avatar(String value) {
     _prefs.setString('avatar', value);
   }

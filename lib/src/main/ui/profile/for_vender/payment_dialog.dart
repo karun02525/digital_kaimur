@@ -5,12 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:upi_india/upi_india.dart';
 
-class CustomDialog extends StatefulWidget {
+class PaymentDialog extends StatefulWidget {
   @override
-  _CustomDialogState createState() => _CustomDialogState();
+  _PaymentDialogState createState() => _PaymentDialogState();
 }
 
-class _CustomDialogState extends State<CustomDialog> {
+class _PaymentDialogState extends State<PaymentDialog> {
   Future<UpiResponse> _transaction;
   int status = 0;
   bool isPaymentSuccess=false;
