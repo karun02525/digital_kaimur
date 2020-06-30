@@ -15,7 +15,7 @@ class _PaymentDialogState extends State<PaymentDialog> {
   int status = 0;
   bool isPaymentSuccess=false;
   UpiIndia _upiIndia = UpiIndia();
-  List<UpiApp> apps;
+  List<UpiApp> apps=[];
 
   @override
   void initState() {
@@ -172,7 +172,8 @@ class _PaymentDialogState extends State<PaymentDialog> {
               color: Colors.blue,
               textColor: Colors.white,
               onPressed: () {
-                Navigator.of(context).pop(); // To close the dialog
+                Navigator.of(context).pop();
+                Navigator.pushNamed(context, '/register-store');// To close the dialog
               },
               child: TextWidget(
                 title: "Add Your Shop",
