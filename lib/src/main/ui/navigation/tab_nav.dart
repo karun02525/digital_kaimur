@@ -1,4 +1,5 @@
 import 'package:digitalkaimur/src/main/ui/navigation/tabs/home.dart';
+import 'package:digitalkaimur/src/main/ui/navigation/tabs/news.dart';
 import 'package:digitalkaimur/src/main/ui/navigation/tabs/notifications.dart';
 import 'package:digitalkaimur/src/main/ui/navigation/tabs/profile.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/text_widget.dart';
@@ -20,7 +21,7 @@ class _TabNavControllerState extends State<TabNavController> {
   final List<Widget> _children = [
     Home(),
     Container(color: Colors.red,),
-    Container(color: Colors.green,),
+    News(),
     Notifications(),
     ProfileWidget(),
   ];

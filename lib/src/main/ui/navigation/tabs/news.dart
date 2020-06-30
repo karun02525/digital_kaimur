@@ -6,19 +6,19 @@ import 'package:digitalkaimur/src/res/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Notifications extends StatefulWidget {
+class News extends StatefulWidget {
   @override
-  _NotificationsState createState() => _NotificationsState();
+  _NewsState createState() => _NewsState();
 }
 
-class _NotificationsState extends State<Notifications> {
+class _NewsState extends State<News> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 2.0,
         centerTitle: true,
-        title: TextWidget(title:AppString.tabNotification, fontSize: AppFonts.toolbarSize,isBold: true),
+        title: TextWidget(title:AppString.tabNews, fontSize: AppFonts.toolbarSize,isBold: true),
       ),
       body:tab() ,
     );
