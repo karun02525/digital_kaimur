@@ -1,3 +1,5 @@
+import 'package:digitalkaimur/src/main/model/notification_model.dart';
+import 'package:digitalkaimur/src/main/repositories/notification_repository.dart';
 import 'package:digitalkaimur/src/main/ui/notifications/general_notification.dart';
 import 'package:digitalkaimur/src/main/ui/notifications/personal_notification.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/text_widget.dart';
@@ -12,6 +14,26 @@ class Notifications extends StatefulWidget {
 }
 
 class _NotificationsState extends State<Notifications> {
+
+  List<NotificationData> notificationList;
+  NotificationRepository _repository;
+  bool _isLoading=true;
+  @override
+  void initState() {
+    super.initState();
+    _repository = NotificationRepository(context);
+    fetchCategory();
+  }
+
+  void fetchCategory(){
+    _repository.findAllNotifications().then((value){
+      setState(() {
+        _isLoading = false;
+        notificationList=value;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,9 +95,10 @@ class _NotificationsState extends State<Notifications> {
                   ),
                 ],
               )),
-          body: TabBarView(children: [
+          body:_isLoading?Container(child: Center(child: CircularProgressIndicator())):
+          TabBarView(children: [
             GeneralNotification(),
-            PersonalNotification(),
+            PersonalNotification(data:notificationList),
           ]),
         ),
       ),

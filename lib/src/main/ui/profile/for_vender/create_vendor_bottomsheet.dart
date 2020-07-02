@@ -1,6 +1,7 @@
 import 'package:digitalkaimur/src/main/config/constraints.dart';
 import 'package:digitalkaimur/src/main/model/category_model.dart';
 import 'package:digitalkaimur/src/main/repositories/category_repository.dart';
+import 'package:digitalkaimur/src/main/ui/profile/for_vender/vendor_verify_dialog.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/button_widget.dart';
 import 'file:///D:/project/app/digital_kaimur/lib/src/main/ui/profile/for_vender/payment_dialog.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/dropdown_widget.dart';
@@ -18,18 +19,18 @@ class CreateVendor extends StatefulWidget {
 }
 
 class _CreateVendorState extends State<CreateVendor> {
-  String catId,cname;
+  String catId;
   List<DataList> categoryList;
   CategoryRepository _repository;
   bool isLoading = true;
-  String name,email,mobile;
+  String name, email, mobile;
 
   @override
   void initState() {
-    var pref=UserPreference();
-    name=pref.name;
-    email=pref.email;
-    mobile=pref.mobile;
+    var pref = UserPreference();
+    name = pref.name;
+    email = pref.email;
+    mobile = pref.mobile;
     super.initState();
     _repository = CategoryRepository(context);
     fetchCategory();
@@ -44,18 +45,16 @@ class _CreateVendorState extends State<CreateVendor> {
     });
   }
 
-  void submit(){
-    _repository.vendorRegister(catId, cname).then((value){
-          Global.toast('message verify done');
-          Navigator.pop(context);
+  void submit() {
+    _repository.vendorRegister(catId).then((value) {
+      if (value) {
+        Navigator.pop(context);
+        showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (BuildContext context) => VendorVerifyDialog());
+      }
     });
-
-
-    /*Navigator.pop(context);
-    showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (BuildContext context) => PaymentDialog());*/
   }
 
   @override
@@ -90,7 +89,7 @@ class _CreateVendorState extends State<CreateVendor> {
                 ButtonWidget(
                   title: AppString.submit,
                   color: Colors.blue,
-                  onPressed:submit,
+                  onPressed: submit,
                   isBold: true,
                 ),
               ],
@@ -107,21 +106,21 @@ class _CreateVendorState extends State<CreateVendor> {
         height: 10.0,
       ),
       TextWidget(
-        title: 'Name:   ${name??'N.A'}',
+        title: 'Name:   ${name ?? 'N.A'}',
         isBold: true,
       ),
       SizedBox(
         height: 10.0,
       ),
       TextWidget(
-        title: 'Mobile:  +91 ${mobile??'N.A'}',
+        title: 'Mobile:  +91 ${mobile ?? 'N.A'}',
         isBold: true,
       ),
       SizedBox(
         height: 10.0,
       ),
       TextWidget(
-        title: 'Email Id:  ${email??'N.A'}',
+        title: 'Email Id:  ${email ?? 'N.A'}',
         fontSize: 13.0,
         isBold: true,
       ),
@@ -150,9 +149,8 @@ class _CreateVendorState extends State<CreateVendor> {
                       imageUrl: Config.baseImageUrl + item.categoryAvatar,
                       isProfile: false,
                     )),
-
                 TextWidget(
-                  title:name=item.categoryName,
+                  title: item.categoryName,
                   isBold: true,
                 ),
               ],

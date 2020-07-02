@@ -14,6 +14,7 @@ class Config{
     static const String registerUrl=baseUrl+'/authenticate/register';
     static const String imageUpdateUrl=baseUrl+'/authenticate/profile_image_update';
     static const String vendor_registerUrl=baseUrl+'/authenticate/vendor_register';
+    static const String notificationsUrl=baseUrl+'/authenticate/notifications';
 
 
 

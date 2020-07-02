@@ -23,9 +23,9 @@ class CategoryRepository{
   }
 
 
-  Future<bool> vendorRegister(String cid,String cname) async {
+  Future<bool> vendorRegister(String cid) async {
     var dio =CustomDio.withAuthentication().instance;
-    return await dio.get('${Config.vendor_registerUrl}/$cid/$cname').then((res){
+    return await dio.get('${Config.vendor_registerUrl}/$cid').then((res){
       if (res.statusCode == 200) {
         final responseBody = jsonDecode(jsonEncode(res.data));
         print('***********Very Vendor ******______________**************');
