@@ -14,7 +14,7 @@ class _ListRegisterPageState extends State<ListRegisterPage> {
   @override
   void initState() {
     super.initState();
-    _repository = CategoryRepository();
+    _repository = CategoryRepository(context);
     listFuture = _repository.findAllCategory();
   }
 

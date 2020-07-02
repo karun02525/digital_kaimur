@@ -36,7 +36,7 @@ class ProfileWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: InfoProfile()),
+                child: InfoProfile(context: context)),
             SizedBox(height: 30.0),
             setMenu(context)
           ],

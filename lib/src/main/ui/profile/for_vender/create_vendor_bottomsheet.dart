@@ -30,7 +30,7 @@ class _CreateVendorState extends State<CreateVendor> {
     email=pref.email;
     mobile=pref.mobile;
     super.initState();
-    _repository = CategoryRepository();
+    _repository = CategoryRepository(context);
     fetchCategory();
   }
 

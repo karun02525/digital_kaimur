@@ -23,7 +23,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   void initState() {
     super.initState();
-    _repository = LoginRespository();
+    _repository = LoginRespository(context);
   }
 
   void doRegister() {

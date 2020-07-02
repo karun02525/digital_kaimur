@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    _repository = LoginRespository();
+    _repository = LoginRespository(context);
   }
 
   void doLogin() {

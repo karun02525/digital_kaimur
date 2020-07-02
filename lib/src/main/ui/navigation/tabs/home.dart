@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    _repository = CategoryRepository();
+    _repository = CategoryRepository(context);
     fetchCategory();
     cityList = SelectCityModel.getCityList();
     // Timer(Duration(seconds: 1), () =>openDialog() );
