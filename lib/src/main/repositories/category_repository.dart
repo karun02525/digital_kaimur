@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:digitalkaimur/src/main/config/constraints.dart';
 import 'package:digitalkaimur/src/main/model/category_model.dart';
 import 'package:digitalkaimur/src/main/service/api_error_handle.dart';
@@ -18,5 +20,22 @@ class CategoryRepository{
       }).catchError((e) {
        return ApiErrorHandel.errorHandel(context,e);
      });
+  }
+
+
+  Future<bool> vendorRegister(String cid,String cname) async {
+    var dio =CustomDio.withAuthentication().instance;
+    return await dio.get('${Config.vendor_registerUrl}/$cid/$cname').then((res){
+      if (res.statusCode == 200) {
+        final responseBody = jsonDecode(jsonEncode(res.data));
+        print('***********Very Vendor ******______________**************');
+        print(responseBody.toString());
+        if (responseBody['status']) {
+        //  UserPreference().avatar=responseBody['data']['user_avatar'];
+          return true;
+        }}
+    }).catchError((e) {
+      return ApiErrorHandel.errorHandel(context,e);
+    });
   }
 }

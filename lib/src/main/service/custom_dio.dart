@@ -31,13 +31,13 @@ class CustomDio{
 
   _onResponse(Response e) {
      print(e.data);
-     print('----------------------------------'+e.statusCode.toString());
+     print('-------------------dio response---------------'+e.statusCode.toString());
 
   }
 
   _onError(DioError e) {
-    print('_________________________________________________________________');
-    print('---------------'+e.response.statusCode.toString());
+    print('_____________________dio___error_________________________________________');
+    print('---------------'+e.response.statusCode.toString()+'----------------------');
     return e;
   }
 }

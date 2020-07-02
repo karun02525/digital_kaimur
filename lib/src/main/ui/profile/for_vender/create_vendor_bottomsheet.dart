@@ -6,6 +6,7 @@ import 'file:///D:/project/app/digital_kaimur/lib/src/main/ui/profile/for_vender
 import 'package:digitalkaimur/src/main/ui/widgets/dropdown_widget.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/image_load_widget.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/text_widget.dart';
+import 'package:digitalkaimur/src/main/utils/global.dart';
 import 'package:digitalkaimur/src/main/utils/shared_preferences.dart';
 import 'package:digitalkaimur/src/res/strings.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,7 +18,7 @@ class CreateVendor extends StatefulWidget {
 }
 
 class _CreateVendorState extends State<CreateVendor> {
-  String catId;
+  String catId,cname;
   List<DataList> categoryList;
   CategoryRepository _repository;
   bool isLoading = true;
@@ -41,6 +42,20 @@ class _CreateVendorState extends State<CreateVendor> {
         categoryList = value;
       });
     });
+  }
+
+  void submit(){
+    _repository.vendorRegister(catId, cname).then((value){
+          Global.toast('message verify done');
+          Navigator.pop(context);
+    });
+
+
+    /*Navigator.pop(context);
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) => PaymentDialog());*/
   }
 
   @override
@@ -75,13 +90,7 @@ class _CreateVendorState extends State<CreateVendor> {
                 ButtonWidget(
                   title: AppString.submit,
                   color: Colors.blue,
-                  onPressed: () {
-                    Navigator.pop(context);
-                    showDialog(
-                        barrierDismissible: false,
-                        context: context,
-                        builder: (BuildContext context) => PaymentDialog());
-                  },
+                  onPressed:submit,
                   isBold: true,
                 ),
               ],
@@ -141,8 +150,9 @@ class _CreateVendorState extends State<CreateVendor> {
                       imageUrl: Config.baseImageUrl + item.categoryAvatar,
                       isProfile: false,
                     )),
+
                 TextWidget(
-                  title: item.categoryName,
+                  title:name=item.categoryName,
                   isBold: true,
                 ),
               ],

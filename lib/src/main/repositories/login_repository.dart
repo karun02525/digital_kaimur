@@ -16,7 +16,6 @@ class LoginRespository {
   }
 
 
-
   Future<bool> loginUser(String mobile, String password) async {
     var params = {"mobile": mobile, "password": password};
     var dio = CustomDio.withAuthentication().instance;
@@ -67,12 +66,15 @@ class LoginRespository {
         print('************Profile upload******______________**************');
         print(responseBody.toString());
         if (responseBody['status']) {
+           UserPreference().avatar=responseBody['data']['user_avatar'];
           return true;
         }}
     }).catchError((e) {
       return ApiErrorHandel.errorHandel(context,e);
     });
   }
+
+
 
 
 

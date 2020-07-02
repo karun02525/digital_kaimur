@@ -1,15 +1,16 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:digitalkaimur/src/main/config/constraints.dart';
 import 'package:digitalkaimur/src/main/repositories/login_repository.dart';
 import 'package:digitalkaimur/src/main/ui/profile/camera_picker.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/text_widget.dart';
-import 'package:digitalkaimur/src/main/utils/global.dart';
 import 'package:digitalkaimur/src/main/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 class InfoProfile extends StatefulWidget {
   final BuildContext context;
-  InfoProfile({Key key,this.context}):super(key:key);
+  InfoProfile({Key key, this.context}) : super(key: key);
 
   @override
   _InfoProfileState createState() => _InfoProfileState(context);
@@ -21,9 +22,9 @@ class _InfoProfileState extends State<InfoProfile> {
   File imageFile;
   LoginRespository _respository;
 
-  _InfoProfileState(BuildContext context){
-    this.context=context;
-    _respository=LoginRespository(context);
+  _InfoProfileState(BuildContext context) {
+    this.context = context;
+    _respository = LoginRespository(context);
   }
 
   @override
@@ -33,15 +34,15 @@ class _InfoProfileState extends State<InfoProfile> {
     email = pref.email;
     avatar = pref.avatar;
     return Column(children: [getProfileImage(), setName()]);
-
   }
 
-  getImageFile(File file){
-    _respository.profilePictureUpdate(file).then((value) =>{
-      Global.toast('Done')
-    });
-    setState(() {
-       imageFile=file;
+  getImageFile(File file) {
+    _respository.profilePictureUpdate(file).then((value) {
+      if (value) {
+        setState(() {
+          avatar = UserPreference().avatar;
+        });
+      }
     });
   }
 
@@ -72,7 +73,7 @@ class _InfoProfileState extends State<InfoProfile> {
   Widget getProfileImage() {
     return GestureDetector(
         onTap: () {
-          CameraPickerWidget(context: context,getImageFile:getImageFile);
+          CameraPickerWidget(context: context, getImageFile: getImageFile);
         },
         child: Container(
           width: 140,
@@ -80,24 +81,19 @@ class _InfoProfileState extends State<InfoProfile> {
           margin: EdgeInsets.only(
             top: 10.0,
           ),
-          child: imageFile == null ? placeHolder() :placeFileImage(),
-
-          /*   avatar == null
-          ? placeHolder()
-          : CachedNetworkImage(
-              imageBuilder: (context, imageProvider) => Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image:
-                      DecorationImage(image: imageProvider, fit: BoxFit.cover),
+          child: avatar == null
+              ? placeHolder()
+              : CachedNetworkImage(
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          image: imageProvider, fit: BoxFit.cover),
+                    ),
+                  ),
+                  placeholder: (context, url) => placeHolder(),
+                  imageUrl: Config.baseProfileImageUrl+avatar,
                 ),
-              ),
-              placeholder: (context, url) => placeHolder(),
-              imageUrl: avatar,
-            ),
-
-*/
-
           decoration: new BoxDecoration(
             shape: BoxShape.circle,
             border: new Border.all(
@@ -112,9 +108,11 @@ class _InfoProfileState extends State<InfoProfile> {
     return ClipOval(
         child: Image(image: AssetImage('assets/images/user_icon.png')));
   }
+
   Widget placeFileImage() {
-    return CircleAvatar(backgroundImage: new FileImage(imageFile), radius: 200.0);
-     /* ClipOval(
+    return CircleAvatar(
+        backgroundImage: new FileImage(imageFile), radius: 200.0);
+    /* ClipOval(
         child: Image.file(imageFile));*/
   }
 }
