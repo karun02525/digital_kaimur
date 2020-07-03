@@ -1,4 +1,7 @@
+import 'package:digitalkaimur/src/main/model/verify_model.dart';
+import 'package:digitalkaimur/src/main/repositories/category_repository.dart';
 import 'package:digitalkaimur/src/main/ui/profile/for_vender/create_vendor_bottomsheet.dart';
+import 'package:digitalkaimur/src/main/ui/profile/for_vender/vendor_verify_dialog.dart';
 import 'package:digitalkaimur/src/main/ui/profile/info_profile.dart';
 import 'package:digitalkaimur/src/main/utils/shared_preferences.dart';
 import 'package:digitalkaimur/src/res/app_icons.dart';
@@ -8,7 +11,46 @@ import 'package:flutter/services.dart';
 import '../../../utils/global.dart';
 import '../../widgets/text_widget.dart';
 
-class ProfileWidget extends StatelessWidget {
+class ProfileWidget extends StatefulWidget {
+  @override
+  _ProfileWidgetState createState() => _ProfileWidgetState();
+}
+
+class _ProfileWidgetState extends State<ProfileWidget> {
+  CategoryRepository _repository;
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    _repository = CategoryRepository(context);
+    super.initState();
+  }
+
+
+  void verifyVendor() {
+    setState(() {
+      isLoading = true;
+    });
+
+    _repository.vendorVerify().then((value) {
+      setState(() {
+       // isLoading = false;
+         dataParse(value);
+      });
+    });
+  }
+
+  void dataParse(DataModel value) {
+          if(value.isVerify==0){
+            _modalBottomSheetMenu(context);
+          }else if(value.isVerify==1){
+            showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (BuildContext context) => VendorVerifyDialog(data: value,));
+          }
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -61,9 +103,7 @@ class ProfileWidget extends StatelessWidget {
       ItemWidget(
         name: 'For Vender',
         icon: Icons.shopping_basket,
-        onClick: () {
-          _modalBottomSheetMenu(cnt);
-        },
+        onClick:verifyVendor,
       ),
       ItemWidget(
         name: 'Settings',
@@ -114,6 +154,8 @@ class ProfileWidget extends StatelessWidget {
           );
         });
   }
+
+
 
 
 }

@@ -5,7 +5,7 @@ class Config{
     static const api_youtube='AIzaSyAiSJV9ZHpFN8AwzpUDyorMVegUMS1corw';
     static const String base64Prefix='data:image/png;base64,';
 
-    static const baseUrl='http://192.168.1.2:8080';
+    static const baseUrl='http://192.168.1.10:8080';
     static const baseImageUrl=baseUrl+'/category/image-category/';
     static const baseProfileImageUrl=baseUrl+'/authenticate/image-profile/';
 
@@ -13,6 +13,7 @@ class Config{
     static const String loginUrl=baseUrl+'/authenticate/login';
     static const String registerUrl=baseUrl+'/authenticate/register';
     static const String imageUpdateUrl=baseUrl+'/authenticate/profile_image_update';
+    static const String vendor_verifyUrl=baseUrl+'/authenticate/vendor_verify';
     static const String vendor_registerUrl=baseUrl+'/authenticate/vendor_register';
     static const String notificationsUrl=baseUrl+'/authenticate/notifications';
 

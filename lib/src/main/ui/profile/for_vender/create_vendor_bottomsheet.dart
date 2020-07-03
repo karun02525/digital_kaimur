@@ -1,5 +1,6 @@
 import 'package:digitalkaimur/src/main/config/constraints.dart';
 import 'package:digitalkaimur/src/main/model/category_model.dart';
+import 'package:digitalkaimur/src/main/model/verify_model.dart';
 import 'package:digitalkaimur/src/main/repositories/category_repository.dart';
 import 'package:digitalkaimur/src/main/ui/profile/for_vender/vendor_verify_dialog.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/button_widget.dart';
@@ -21,9 +22,11 @@ class CreateVendor extends StatefulWidget {
 class _CreateVendorState extends State<CreateVendor> {
   String catId;
   List<DataList> categoryList;
+
   CategoryRepository _repository;
   bool isLoading = true;
   String name, email, mobile;
+
 
   @override
   void initState() {
@@ -46,7 +49,11 @@ class _CreateVendorState extends State<CreateVendor> {
   }
 
   void submit() {
+    isLoading = true;
     _repository.vendorRegister(catId).then((value) {
+      setState(() {
+        isLoading = false;
+      });
       if (value) {
         Navigator.pop(context);
         showDialog(
