@@ -7,11 +7,20 @@ import 'package:flutter/material.dart';
 
 class VendorVerifyDialog extends StatelessWidget {
   DataModel data;
-  int status = 0;
+  bool status = true;
   VendorVerifyDialog({this.data});
+  String message = '';
 
   @override
   Widget build(BuildContext context) {
+    if (data.isVerify == 1) {
+      status = true;
+      message = 'Your Verification Pending';
+    } else if (data.isVerify == 3) {
+      status = false;
+      message = 'Your Shop has been rejected';
+    }
+
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(Consts.padding),
@@ -26,12 +35,12 @@ class VendorVerifyDialog extends StatelessWidget {
     return Stack(
       children: <Widget>[
         get(context),
-        im(),
+        topIcon(),
       ],
     );
   }
 
-  Widget im() {
+  Widget topIcon() {
     return Positioned(
       left: Consts.padding,
       right: Consts.padding,
@@ -51,8 +60,6 @@ class VendorVerifyDialog extends StatelessWidget {
       padding: EdgeInsets.only(
         top: Consts.avatarRadius,
         bottom: Consts.padding,
-        left: Consts.padding,
-        right: Consts.padding,
       ),
       margin: EdgeInsets.only(top: Consts.avatarRadius),
       decoration: new BoxDecoration(
@@ -63,49 +70,43 @@ class VendorVerifyDialog extends StatelessWidget {
           BoxShadow(
             color: Colors.black26,
             blurRadius: 10.0,
-            offset: const Offset(0.0, 10.0),
+            offset: const Offset(0.0, 20.0),
           ),
         ],
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min, // To make the card compact
         children: <Widget>[
-          status == 0
-              ? TextWidget(
-                  title: "Pending",
-                  color: Colors.orange,
-                  isBold: true,
-                  fontSize: 20.0)
-              : status == 1
-                  ? TextWidget(
-                      title: "Payment Successfully",
-                      color: Colors.green,
-                      isBold: true,
-                      fontSize: 20.0)
-                  : status == 2
-                      ? TextWidget(
-                          title: "Payment Failed try again",
-                          color: Colors.red,
-                          isBold: true,
-                          fontSize: 20.0)
-                      : status == 3
-                          ? TextWidget(
-                              title: "Rejected",
-                              color: Colors.red,
-                              isBold: true,
-                              fontSize: 20.0)
-                          : Align(
-                              alignment: Alignment.bottomRight,
-                              child: FlatButton(
-                                  onPressed: () {
-                                    Navigator.of(context)
-                                        .pop(); // To close the dialog
-                                  },
-                                  child: TextWidget(title: "Close")),
-                            ),
+          showStatus(),
+          Divider(),
+          SizedBox(
+            height: 10.0,
+            width: MediaQuery.of(context).size.width,
+          ),
+          TextWidget(title: 'Your Register Id:', isBold: true, fontSize: 14.0,ls:0.5,color: Colors.black87),
+          TextWidget(title: '#${data.vid}', isBold: true, fontSize: 12.0,ls:1.0,color: Colors.black38,),
+          SizedBox(height: 30.0),
+          RaisedButton(
+              color: Colors.blue,
+              textColor: Colors.white,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: TextWidget(
+                title: "Done",
+                isBold: true,
+              ))
         ],
       ),
     );
+  }
+
+  Widget showStatus() {
+    return status
+        ? TextWidget(
+            title: message, color: Colors.green, isBold: true, fontSize: 15.0,ls:1.0)
+        : TextWidget(
+            title: message, color: Colors.red, isBold: true, fontSize: 15.0,ls:1.0);
   }
 }
 

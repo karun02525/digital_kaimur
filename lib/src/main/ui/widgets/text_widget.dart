@@ -9,6 +9,7 @@ class TextWidget extends StatelessWidget {
   double top;
   double bottom;
   double fontSize;
+  double ls;
   int maxLines;
   TextOverflow overflow;
 
@@ -21,6 +22,7 @@ class TextWidget extends StatelessWidget {
     this.fontSize = 15.0,
     this.maxLines = 7,
     this.overflow,
+    this.ls,
   });
 
   @override
@@ -33,6 +35,7 @@ class TextWidget extends StatelessWidget {
                   color: color,
                   fontFamily: AppFonts.font,
                   fontSize: fontSize,
+                  letterSpacing:ls ,
                   fontWeight: FontWeight.w700))
           : Text(title,
               maxLines: maxLines,
@@ -41,6 +44,7 @@ class TextWidget extends StatelessWidget {
                   color: color,
                   fontFamily: AppFonts.font,
                   fontSize: fontSize,
+                  letterSpacing:ls ,
                   fontWeight: FontWeight.w100)),
     );
   }

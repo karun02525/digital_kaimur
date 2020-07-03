@@ -49,22 +49,31 @@ class _CreateVendorState extends State<CreateVendor> {
   }
 
   void submit() {
-    isLoading = true;
-    _repository.vendorRegister(catId).then((value) {
-      setState(() {
-        isLoading = false;
+    if(catId==null) {
+      Global.toast("Please select category");
+    }else {
+      isLoading = true;
+      _repository.vendorRegister(catId).then((value) {
+        setState(() {
+          isLoading = false;
+          dataParse(value);
+        });
       });
-      if (value) {
-        Navigator.pop(context);
-        showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (BuildContext context) => VendorVerifyDialog());
-      }
-    });
+    }
   }
 
-  @override
+  void dataParse(DataModel value) {
+    if (value.isVerify == 1) {
+      Navigator.pop(context);
+      showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context) => VendorVerifyDialog(data: value,));
+    }
+  }
+
+
+    @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(

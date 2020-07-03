@@ -34,7 +34,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
     _repository.vendorVerify().then((value) {
       setState(() {
-       // isLoading = false;
+         isLoading = false;
          dataParse(value);
       });
     });
@@ -43,7 +43,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   void dataParse(DataModel value) {
           if(value.isVerify==0){
             _modalBottomSheetMenu(context);
-          }else if(value.isVerify==1){
+          }if(value.isVerify==2){
+            Navigator.pushNamed(context, '/register-store');
+          }else if(value.isVerify==1 || value.isVerify==3){
             showDialog(
                 barrierDismissible: false,
                 context: context,
@@ -80,6 +82,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 ),
                 child: InfoProfile(context: context)),
             SizedBox(height: 30.0),
+
+            Visibility(
+              visible: isLoading,
+              child: CupertinoActivityIndicator(radius: 13.0,animating: isLoading,),
+            ),
             setMenu(context)
           ],
         ),

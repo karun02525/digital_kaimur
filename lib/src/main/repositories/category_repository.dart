@@ -35,17 +35,11 @@ class CategoryRepository {
     });
   }
 
-  Future<bool> vendorRegister(String cid) async {
+  Future<DataModel> vendorRegister(String cid) async {
     var dio = CustomDio.withAuthentication().instance;
     return await dio.get('${Config.vendor_registerUrl}/$cid').then((res) {
       if (res.statusCode == 200) {
-        final responseBody = jsonDecode(jsonEncode(res.data));
-        print('***********Very Vendor ******______________**************');
-        print(responseBody.toString());
-        if (responseBody['status']) {
-          //  UserPreference().avatar=responseBody['data']['user_avatar'];
-          return true;
-        }
+        return verifyModelFromJson(jsonEncode(res.data)).data;
       }
     }).catchError((e) {
       ApiErrorHandel.errorHandel(context, e);
