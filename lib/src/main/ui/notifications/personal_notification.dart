@@ -15,15 +15,15 @@ class PersonalNotification extends StatefulWidget {
 class _PersonalNotificationState extends State<PersonalNotification> {
   @override
   Widget build(BuildContext context) {
+    List<NotificationData> data=List.from(widget.data.reversed);
     return Container(
-        child: widget.data.length == 0
+        child: data.length == 0
             ? Container(
                 child: Center(child: TextWidget(title: 'Noting Notifications')))
             : ListView.builder(
-             reverse: true,
-             itemCount: widget.data.length,
+             itemCount: data.length,
             itemBuilder: (context, index) {
-                return buildCard(widget.data[index]);
+                return buildCard(data[index]);
               }));
   }
 
