@@ -12,7 +12,7 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: 40.0, bottom: 3.0),
+        margin: EdgeInsets.only(top: 20.0, bottom: 3.0),
         child:SizedBox(
           width: double.infinity,
           height: 50.0,

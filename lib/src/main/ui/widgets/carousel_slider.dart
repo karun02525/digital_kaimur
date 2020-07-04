@@ -10,13 +10,12 @@ class FullscreenSlider extends StatefulWidget {
 
 class _FullscreenSliderState extends State<FullscreenSlider> {
   int _current = 0;
-
   List<String> imgList = Global.imgList;
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Silder(),
+        slider(),
         Positioned.fill(
           child: Align(
             alignment: Alignment.bottomCenter,
@@ -43,7 +42,7 @@ class _FullscreenSliderState extends State<FullscreenSlider> {
     );
   }
 
-  Widget Silder() {
+  Widget slider() {
     return Builder(
       builder: (context) {
         final double height = MediaQuery.of(context).size.height;

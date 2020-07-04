@@ -13,14 +13,12 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  bool isLogin = false;
   @override
   void initState() {
-    isLogin = UserPreference().isLogin ?? false;
     super.initState();
     Timer(
         Duration(seconds: 3),
-        () => isLogin
+        () => UserPreference().isLogin
             ? Global.navigateToHome(context)
             : Global.navigateToLogin(context));
   }

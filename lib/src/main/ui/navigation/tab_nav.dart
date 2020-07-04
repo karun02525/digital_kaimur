@@ -2,6 +2,9 @@ import 'package:digitalkaimur/src/main/ui/navigation/tabs/home.dart';
 import 'package:digitalkaimur/src/main/ui/navigation/tabs/news.dart';
 import 'package:digitalkaimur/src/main/ui/navigation/tabs/notifications.dart';
 import 'package:digitalkaimur/src/main/ui/navigation/tabs/profile.dart';
+import 'package:digitalkaimur/src/main/ui/navigation/tabs/store.dart';
+import 'package:digitalkaimur/src/main/ui/store/store_map.dart';
+import 'package:digitalkaimur/src/main/ui/vender/get_location.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/text_widget.dart';
 import 'package:digitalkaimur/src/res/strings.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,8 +22,8 @@ class _TabNavControllerState extends State<TabNavController> {
 
   int _currentIndex = 0;
   final List<Widget> _children = [
-    Home(),
-    Container(color: Colors.red,),
+    GetCurrentLocation(),
+    MapStore(),
     News(),
     Notifications(),
     ProfileWidget(),

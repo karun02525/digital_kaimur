@@ -1,3 +1,4 @@
+import 'package:digitalkaimur/learn/demo_redirect_link.dart';
 import 'package:digitalkaimur/src/main/ui/notifications/general_notification.dart';
 import 'package:digitalkaimur/src/main/ui/notifications/personal_notification.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/text_widget.dart';
@@ -20,7 +21,7 @@ class _NewsState extends State<News> {
         centerTitle: true,
         title: TextWidget(title:AppString.tabNews, fontSize: AppFonts.toolbarSize,isBold: true),
       ),
-      body:tab() ,
+      body:ProfileScreen() ,
     );
 
   }

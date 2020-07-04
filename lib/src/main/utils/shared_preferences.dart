@@ -58,7 +58,7 @@ class UserPreference {
   }
 
   set isLogin(bool value) {
-    _prefs.setBool('isLogin', value);
+    _prefs.setBool('isLogin'??false, value);
   }
 
   get isLogin {
