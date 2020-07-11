@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-//      theme: ThemeData.dark(),
+      theme: ThemeData.dark(),
       title: 'location picker',
       localizationsDelegates: const [
         location_picker.S.delegate,
@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> {
 //                      mapStylePath: 'assets/mapStyle.json',
                       myLocationButtonEnabled: true,
                       layersButtonEnabled: true,
-//                      resultCardAlignment: Alignment.bottomCenter,
+                    resultCardAlignment: Alignment.bottomCenter,
                     );
                     print("result = $result");
                     setState(() => _pickedLocation = result);

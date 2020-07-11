@@ -1,10 +1,11 @@
+import 'package:digitalkaimur/src/main/config/constraints.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/text_widget.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/textfield_widget.dart';
 import 'package:digitalkaimur/src/res/fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_map_location_picker/google_map_location_picker.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 
 import 'button_widget.dart';
 
@@ -14,10 +15,12 @@ class RegistrationFormWidget extends StatefulWidget {
 }
 
 class _RegistrationFormWidgetState extends State<RegistrationFormWidget> {
+  LocationResult _pickedLocation;
+
   var _editName = TextEditingController();
   var _editMobile = TextEditingController();
   var _editEmail = TextEditingController();
-  var _editPassword = TextEditingController();
+  var _editAdress = TextEditingController();
   bool isLoading = false;
 
   @override
@@ -175,7 +178,7 @@ class _RegistrationFormWidgetState extends State<RegistrationFormWidget> {
                   SizedBox(height: 13.0),
                   TextFieldWidget(
                       hintText: "Enter store address",
-                      controller: _editName,
+                      controller: _editAdress,
                       letterSpacing: 1.0,
                       maxLength: 3,
                       keyboardType: TextInputType.text,
@@ -253,6 +256,20 @@ class _RegistrationFormWidgetState extends State<RegistrationFormWidget> {
   }
 
   _addLocation() async {
+    LocationResult result = await showLocationPicker(
+      context, Config.api_key,
+//    initialCenter: LatLng(31.1975844, 29.9598339),
+      automaticallyAnimateToCurrentLocation: true,
+//    mapStylePath: 'assets/mapStyle.json',
+      myLocationButtonEnabled: true,
+      layersButtonEnabled: true,
+      resultCardAlignment: Alignment.bottomCenter,
+    );
+    print("result = $result");
+    setState((){
+      _pickedLocation = result;
+      _editAdress.text=_pickedLocation.address.toString();
+    });
 
   }
 }
