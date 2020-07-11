@@ -57,7 +57,8 @@ dev_dependencies:
   geolocator: ^5.3.2+2
   font_awesome_flutter: ^8.8.1
   url_launcher: ^5.1.6
-  google_map_location_picker: ^3.3.3
+  mini_calendar: ^0.3.2
+  google_map_location_picker:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

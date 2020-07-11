@@ -3,6 +3,7 @@ class Config{
 
 
     static const api_youtube='AIzaSyAiSJV9ZHpFN8AwzpUDyorMVegUMS1corw';
+    static const api_key='AIzaSyBFgb-c1pBbGK_iXOpDxY2voGYzWDvAuGE';
     static const String base64Prefix='data:image/png;base64,';
 
     static const baseUrl='http://192.168.1.10:8080';

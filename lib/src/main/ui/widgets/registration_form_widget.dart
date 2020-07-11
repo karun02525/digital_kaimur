@@ -3,6 +3,8 @@ import 'package:digitalkaimur/src/main/ui/widgets/textfield_widget.dart';
 import 'package:digitalkaimur/src/res/fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_map_location_picker/google_map_location_picker.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'button_widget.dart';
 
@@ -167,7 +169,7 @@ class _RegistrationFormWidgetState extends State<RegistrationFormWidget> {
                   ),
                   ButtonWidget(
                     title: 'Add Store Location',
-                    onPressed: () {},
+                    onPressed:_addLocation,
                     color: Colors.blue,
                   ),
                   SizedBox(height: 13.0),
@@ -248,5 +250,9 @@ class _RegistrationFormWidgetState extends State<RegistrationFormWidget> {
           decoration: TextDecoration.none,
           fontSize: 14,
         ));
+  }
+
+  _addLocation() async {
+
   }
 }

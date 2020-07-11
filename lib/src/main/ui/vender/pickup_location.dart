@@ -1,3 +1,4 @@
+import 'package:digitalkaimur/src/main/config/constraints.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_map_location_picker/generated/i18n.dart'
@@ -19,6 +20,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
 //      theme: ThemeData.dark(),
       title: 'location picker',
       localizationsDelegates: const [
@@ -43,9 +45,9 @@ class _MyAppState extends State<MyApp> {
                 RaisedButton(
                   onPressed: () async {
                     LocationResult result = await showLocationPicker(
-                      context, 'AIzaSyB74VQpbWR_QSu8u3FndXRkPXl-Qzndf5Q',
-                      initialCenter: LatLng(31.1975844, 29.9598339),
-//                      automaticallyAnimateToCurrentLocation: true,
+                      context, Config.api_key,
+//                      initialCenter: LatLng(31.1975844, 29.9598339),
+                     automaticallyAnimateToCurrentLocation: true,
 //                      mapStylePath: 'assets/mapStyle.json',
                       myLocationButtonEnabled: true,
                       layersButtonEnabled: true,
