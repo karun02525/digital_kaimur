@@ -22,7 +22,7 @@ class _TabNavControllerState extends State<TabNavController> {
 
   int _currentIndex = 0;
   final List<Widget> _children = [
-    GetCurrentLocation(),
+    Home(),
     MapStore(),
     News(),
     Notifications(),

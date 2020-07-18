@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-        Duration(seconds: 3),
+        Duration(seconds: 1),
         () => UserPreference().isLogin
             ? Global.navigateToHome(context)
             : Global.navigateToLogin(context));
@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Shimmer.fromColors(
             baseColor: Colors.white,
             highlightColor: Colors.yellow,
-            child: Text("PopWoot",
+            child: Text("DigiFame",
                 style: TextStyle(
                     fontSize: 70.0,
                     decoration: TextDecoration.none,

@@ -40,7 +40,6 @@ class _ListRegisterPageState extends State<ListRegisterPage> {
                 itemBuilder: (_, index) {
                   var item = snapshot.data[index];
                   return ListTile(
-                    title: Text(item.categoryPostion.toString()),
                     subtitle: Text(item.categoryName),
                   );
                 });

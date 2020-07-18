@@ -6,7 +6,7 @@ class Config{
     static const api_key='AIzaSyBFgb-c1pBbGK_iXOpDxY2voGYzWDvAuGE';
     static const String base64Prefix='data:image/png;base64,';
 
-    static const baseUrl='http://192.168.1.10:8080';
+    static const baseUrl='http://192.168.1.7:8080';
     static const baseImageUrl=baseUrl+'/category/image-category/';
     static const baseProfileImageUrl=baseUrl+'/authenticate/image-profile/';
 

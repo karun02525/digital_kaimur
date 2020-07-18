@@ -18,7 +18,7 @@ class CategoryRepository {
     return await dio.get(Config.getCategoryUrl).then((res) {
       return CategoryModel.fromJson(res.data).data;
     }).catchError((e) {
-      return ApiErrorHandel.errorHandel(context, e);
+       ApiErrorHandel.errorHandel(context, e);
     });
   }
 

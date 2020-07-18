@@ -33,29 +33,21 @@ class DataList {
     this.categoryId,
     this.categoryName,
     this.categoryAvatar,
-    this.categoryPostion,
-    this.createAt,
   });
 
   String categoryId;
   String categoryName;
   String categoryAvatar;
-  int categoryPostion;
-  DateTime createAt;
 
   factory DataList.fromJson(Map<String, dynamic> json) => DataList(
-    categoryId: json["category_id"],
-    categoryName: json["category_name"],
-    categoryAvatar: json["category_avatar"],
-    categoryPostion: json["category_postion"],
-    createAt: DateTime.parse(json["create_at"]),
+    categoryId: json["cid"],
+    categoryName: json["cname"],
+    categoryAvatar: json["avatar"]
   );
 
   Map<String, dynamic> toJson() => {
-    "category_id": categoryId,
-    "category_name": categoryName,
-    "category_avatar": categoryAvatar,
-    "category_postion": categoryPostion,
-    "create_at": createAt.toIso8601String(),
+    "cid": categoryId,
+    "cname": categoryName,
+    "avatar": categoryAvatar
   };
 }
