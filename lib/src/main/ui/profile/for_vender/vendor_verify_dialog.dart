@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:digitalkaimur/src/main/config/constraints.dart';
 import 'package:digitalkaimur/src/main/model/verify_model.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/text_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -48,7 +49,7 @@ class VendorVerifyDialog extends StatelessWidget {
         backgroundColor: Colors.white,
         child: Padding(
           padding: const EdgeInsets.all(18.0),
-          child: Image.asset('assets/images/vegetable.png'),
+          child: Image.network(Config.baseCategoryImageUrl+data.cavatar??''),
         ),
         radius: Consts.avatarRadius,
       ),
@@ -85,6 +86,7 @@ class VendorVerifyDialog extends StatelessWidget {
           ),
           TextWidget(title: 'Your Register Id:', isBold: true, fontSize: 14.0,ls:0.5,color: Colors.black87),
           TextWidget(title: '#${data.vid}', isBold: true, fontSize: 12.0,ls:1.0,color: Colors.black38,),
+          TextWidget(title: 'Category: ${data.cname??''}', isBold: true, fontSize: 12.0,ls:1.0,color: Colors.blueAccent,),
           SizedBox(height: 30.0),
           RaisedButton(
               color: Colors.blue,

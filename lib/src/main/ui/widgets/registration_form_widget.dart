@@ -14,6 +14,9 @@ import 'add_mutiple_photos.dart';
 import 'button_widget.dart';
 
 class RegistrationFormWidget extends StatefulWidget {
+  final String vid,cid,cname;
+  RegistrationFormWidget({Key key,this.vid,this.cid,this.cname}):super(key:key);
+
 
   @override
   _RegistrationFormWidgetState createState() => _RegistrationFormWidgetState();
@@ -21,8 +24,6 @@ class RegistrationFormWidget extends StatefulWidget {
 
 class _RegistrationFormWidgetState extends State<RegistrationFormWidget> {
   LocationResult _pickedLocation;
-  String vid = "5f134f68204e981ae17b6ab1";
-  String cid = "5f10a2f844cac47f113e93bf";
   String color = "FFFFFS";
   bool isLoading = false;
   StoreRespository _repository;
@@ -97,8 +98,8 @@ class _RegistrationFormWidgetState extends State<RegistrationFormWidget> {
       });
 
       _repository.storeRegister(files, [
-        cid,
-        vid,
+        widget.cid,
+        widget.vid,
         name,
         email,
         mob,
@@ -157,7 +158,7 @@ class _RegistrationFormWidgetState extends State<RegistrationFormWidget> {
                 children: [
                   TextWidget(title: 'Store Registration No',left: 20,right: 10),
                   TextWidget(
-                    title: '#7678688799898',
+                    title: '#${widget?.vid??'xxxx'}',
                     color: Colors.blueAccent,
                     fontSize: 14.0,
                     ls: 1.6
@@ -173,7 +174,7 @@ class _RegistrationFormWidgetState extends State<RegistrationFormWidget> {
                           style: DefaultTextStyle.of(context).style,
                           children: [
                             spanDecoration('Store Category: ', Colors.grey),
-                            spanDecoration('Hospital', Colors.blueAccent)
+                            spanDecoration(widget?.cname??'', Colors.blueAccent)
                           ]),
                     ),
                   ),
@@ -219,14 +220,12 @@ class _RegistrationFormWidgetState extends State<RegistrationFormWidget> {
                   hintText: "Enter store name",
                   controller: _editStoreName,
                   letterSpacing: 1.0,
-                  keyboardType: TextInputType.text,
                   minLine: 1),
               SizedBox(height: 15.0),
               TextFieldWidget(
                   hintText: "Enter store email id",
                   controller: _editStoreEmail,
                   letterSpacing: 1.0,
-                  keyboardType: TextInputType.emailAddress,
                   minLine: 1),
               SizedBox(height: 15.0),
               TextFieldWidget(
@@ -275,15 +274,12 @@ class _RegistrationFormWidgetState extends State<RegistrationFormWidget> {
                       hintText: "Enter store address",
                       controller: _editStoreAddress,
                       letterSpacing: 1.0,
-                      maxLength: 3,
-                      keyboardType: TextInputType.text,
                       minLine: 3),
                   SizedBox(height: 13.0),
                   TextFieldWidget(
                       hintText: "Enter store near by",
                       controller: _editStoreNearBy,
                       letterSpacing: 1.0,
-                      keyboardType: TextInputType.text,
                       minLine: 1),
                   SizedBox(height: 13.0),
                   TextFieldWidget(
@@ -320,7 +316,6 @@ class _RegistrationFormWidgetState extends State<RegistrationFormWidget> {
                       hintText: "Owner name",
                       controller: _editOwnerName,
                       letterSpacing: 1.0,
-                      keyboardType: TextInputType.text,
                       minLine: 1),
                   SizedBox(height: 13.0),
                   TextFieldWidget(
@@ -335,8 +330,7 @@ class _RegistrationFormWidgetState extends State<RegistrationFormWidget> {
                       hintText: "Owner email id",
                       controller: _editOwnerEmail,
                       letterSpacing: 1.0,
-                      minLine: 1,
-                      keyboardType: TextInputType.emailAddress),
+                      minLine: 1,),
                 ])));
   }
 

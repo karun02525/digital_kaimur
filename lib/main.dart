@@ -70,8 +70,7 @@ class _LaunchAppState extends State<LaunchApp> {
       home: TabNavController(),
       routes: {
         '/home': (context) => TabNavController(),
-        '/search': (context) => GlobalSearch(),
-        '/register-store': (context) => RegisterStore()
+        '/search': (context) => GlobalSearch()
       },
     );
   }

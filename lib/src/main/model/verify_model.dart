@@ -35,7 +35,9 @@ class DataModel {
     this.mobile,
     this.email,
     this.cid,
-    this.isVerify,
+    this.cname,
+    this.cavatar,
+    this.isVerify=0,
     //this.createAt,
     //this.updateAt,
   });
@@ -45,6 +47,8 @@ class DataModel {
   String mobile;
   String email;
   String cid;
+  String cname;
+  String cavatar;
   int isVerify;
   //DateTime createAt;
   //DateTime updateAt;
@@ -55,7 +59,9 @@ class DataModel {
     mobile: json["mobile"]??'',
     email: json["email"]??'',
     cid: json["cid"]??'',
-    isVerify: json["is_verify"],
+    cname: json["cname"]??'',
+    cavatar: json["cavatar"]??'',
+    isVerify: json["is_verify"]??0,
 //    createAt: DateTime.parse(json["create_at"]??DateTime.now()),
   //  updateAt: DateTime.parse(json["update_at"]??DateTime.now()),
   );
@@ -66,6 +72,8 @@ class DataModel {
     "mobile": mobile,
     "email": email,
     "cid": cid,
+    "cname": cname,
+    "cavatar": cavatar,
     "is_verify": isVerify,
     //"create_at": createAt.toIso8601String(),
     //"update_at": updateAt.toIso8601String(),

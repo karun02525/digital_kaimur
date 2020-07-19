@@ -4,6 +4,7 @@ import 'package:digitalkaimur/src/main/ui/widgets/text_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'image_big_load_widget.dart';
 import 'image_load_widget.dart';
 
 class GridDashboard extends StatelessWidget {
@@ -29,8 +30,8 @@ class GridDashboard extends StatelessWidget {
                 SizedBox(
                     height: 60.0,
                     width: 60.0,
-                    child: ImageLoadWidget(
-                        imageUrl: Config.baseImageUrl + item.categoryAvatar)),
+                    child: ImageLoadBigWidget(
+                        imageUrl: Config.baseCategoryImageUrl + item.categoryAvatar)),
                 SizedBox(height: 5.0),
                 Padding(
                   padding: EdgeInsets.only(left: 2.0, right: 2.0),

@@ -30,11 +30,24 @@ class _PersonalNotificationState extends State<PersonalNotification> {
   Widget buildCard(NotificationData data) {
     return Card(
         child: ListTile(
-        title: TextWidget(title:data.title),
+        title:contentWidget(data.title??'',data.category??'----'),
           subtitle:TextWidget(title:data.message,fontSize: 12.0),
           trailing:TextWidget(title:Global.timeAgo(data.createAt),isBold: true,fontSize: 11.0,) ,
     ));
   }
 
+
+  Widget contentWidget(title,cat){
+     return Container(
+         child:Column(
+           crossAxisAlignment: CrossAxisAlignment.start,
+           mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            TextWidget(title:title),
+            TextWidget(title:cat),
+          ],
+         ),
+     );
+  }
 
 }

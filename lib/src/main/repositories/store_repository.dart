@@ -36,8 +36,8 @@ class StoreRespository {
     formData.fields.add(MapEntry("semail", element[3]));
     formData.fields.add(MapEntry("smobile", element[4]));
     formData.fields.add(MapEntry("color", element[5]));
-    formData.fields.add(MapEntry("latitude", element[6]));
-    formData.fields.add(MapEntry("longitude", element[7]));
+    formData.fields.add(MapEntry("latitude", element[6].toString()));
+    formData.fields.add(MapEntry("longitude", element[7].toString()));
     formData.fields.add(MapEntry("address", element[8]));
     formData.fields.add(MapEntry("nearby", element[9]));
     formData.fields.add(MapEntry("pin_code", element[10]));

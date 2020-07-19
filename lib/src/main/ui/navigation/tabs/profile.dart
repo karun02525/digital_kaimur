@@ -3,6 +3,7 @@ import 'package:digitalkaimur/src/main/repositories/category_repository.dart';
 import 'package:digitalkaimur/src/main/ui/profile/for_vender/create_vendor_bottomsheet.dart';
 import 'package:digitalkaimur/src/main/ui/profile/for_vender/vendor_verify_dialog.dart';
 import 'package:digitalkaimur/src/main/ui/profile/info_profile.dart';
+import 'package:digitalkaimur/src/main/ui/vender/register_store.dart';
 import 'package:digitalkaimur/src/main/utils/shared_preferences.dart';
 import 'package:digitalkaimur/src/res/app_icons.dart';
 import 'package:flutter/cupertino.dart';
@@ -44,12 +45,15 @@ class _ProfileWidgetState extends State<ProfileWidget> {
           if(value.isVerify==0){
             _modalBottomSheetMenu(context);
           }if(value.isVerify==2){
-            Navigator.pushNamed(context, '/register-store');
+            Navigator.push(
+                context, MaterialPageRoute(
+                  builder: (context) => RegisterStore(vid:value.vid??'',cid:value.cid??'',cname:value.cname??''),
+                ));
           }else if(value.isVerify==1 || value.isVerify==3){
             showDialog(
                 barrierDismissible: false,
                 context: context,
-                builder: (BuildContext context) => VendorVerifyDialog(data: value,));
+                builder: (BuildContext context) => VendorVerifyDialog(data: value));
           }
   }
 

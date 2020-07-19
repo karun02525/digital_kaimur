@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:digitalkaimur/src/main/ui/vender/register_store.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/text_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -173,7 +174,13 @@ class _PaymentDialogState extends State<PaymentDialog> {
               textColor: Colors.white,
               onPressed: () {
                 Navigator.of(context).pop();
-                Navigator.pushNamed(context, '/register-store');// To close the dialog
+
+                /*Navigator.push(
+                    context, MaterialPageRoute(
+                  builder: (context) => RegisterStore(vid:value.vid,cid:value.cid,cname:value.name),
+                ));//
+
+                */// To close the dialog
               },
               child: TextWidget(
                 title: "Add Your Shop",

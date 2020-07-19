@@ -7,7 +7,8 @@ class Config{
     static const String base64Prefix='data:image/png;base64,';
 
     static const baseUrl='http://192.168.1.7:8080';
-    static const baseImageUrl=baseUrl+'/category/image-category/';
+    static const baseCategoryImageUrl=baseUrl+'/category/image-category/';
+    static const baseStoreUrl=baseUrl+'/store/image-store/';
     static const baseProfileImageUrl=baseUrl+'/authenticate/image-profile/';
 
     static const String getCategoryUrl=baseUrl+'/category/get-category';
@@ -19,6 +20,7 @@ class Config{
     static const String notificationsUrl=baseUrl+'/authenticate/notifications';
 
     static const String storeCreate=baseUrl+'/store/create-store';
+    static const String storeHome=baseUrl+'/store/all-store';
 
 
 

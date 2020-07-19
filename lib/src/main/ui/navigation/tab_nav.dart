@@ -1,3 +1,4 @@
+import 'package:digitalkaimur/src/main/ui/dashboard/HomeDetails.dart';
 import 'package:digitalkaimur/src/main/ui/navigation/tabs/home.dart';
 import 'package:digitalkaimur/src/main/ui/navigation/tabs/news.dart';
 import 'package:digitalkaimur/src/main/ui/navigation/tabs/notifications.dart';
@@ -23,7 +24,7 @@ class _TabNavControllerState extends State<TabNavController> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     Home(),
-    MapStore(),
+    HomeDetails(),
     News(),
     Notifications(),
     ProfileWidget(),

@@ -4,8 +4,8 @@ import 'package:digitalkaimur/src/main/model/verify_model.dart';
 import 'package:digitalkaimur/src/main/repositories/category_repository.dart';
 import 'package:digitalkaimur/src/main/ui/profile/for_vender/vendor_verify_dialog.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/button_widget.dart';
-import 'file:///D:/project/app/digital_kaimur/lib/src/main/ui/profile/for_vender/payment_dialog.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/dropdown_widget.dart';
+import 'package:digitalkaimur/src/main/ui/widgets/image_big_load_widget.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/image_load_widget.dart';
 import 'package:digitalkaimur/src/main/ui/widgets/text_widget.dart';
 import 'package:digitalkaimur/src/main/utils/global.dart';
@@ -161,9 +161,8 @@ class _CreateVendorState extends State<CreateVendor> {
                     width: 35.0,
                     height: 35.0,
                     margin: EdgeInsets.only(right: 15.0, left: 10.0),
-                    child: ImageLoadWidget(
-                      imageUrl: Config.baseImageUrl + item.categoryAvatar,
-                      isProfile: false,
+                    child: ImageLoadBigWidget(
+                      imageUrl: Config.baseCategoryImageUrl + item.categoryAvatar,
                     )),
                 TextWidget(
                   title: item.categoryName,
