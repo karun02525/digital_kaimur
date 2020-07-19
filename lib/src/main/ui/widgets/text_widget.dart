@@ -8,6 +8,8 @@ class TextWidget extends StatelessWidget {
   Color color;
   double top;
   double bottom;
+  double left;
+  double right;
   double fontSize;
   double ls;
   int maxLines;
@@ -19,6 +21,8 @@ class TextWidget extends StatelessWidget {
     this.isBold = false,
     this.top = 0.0,
     this.bottom = 0.0,
+    this.left = 0.0,
+    this.right = 0.0,
     this.fontSize = 15.0,
     this.maxLines = 7,
     this.overflow,
@@ -28,7 +32,7 @@ class TextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: top, bottom: bottom),
+      margin: EdgeInsets.only(top: top, bottom: bottom,left: left,right: right),
       child: isBold
           ? Text(title,
               style: TextStyle(

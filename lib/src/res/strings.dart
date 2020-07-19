@@ -10,4 +10,5 @@ class AppString{
     static const createVendor="Register Shop";
     static const select_category="Select category";
     static const submit="Submit";
+    static const bottomDialog="You can not upload more than 5 photos.";
 }

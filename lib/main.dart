@@ -67,7 +67,7 @@ class _LaunchAppState extends State<LaunchApp> {
       theme:
           ThemeData(primaryColor: AppColor.appColor, accentColor: Colors.blue),
       debugShowCheckedModeBanner: false,
-      home: RegistrationFormWidget(),
+      home: TabNavController(),
       routes: {
         '/home': (context) => TabNavController(),
         '/search': (context) => GlobalSearch(),

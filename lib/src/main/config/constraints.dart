@@ -18,6 +18,8 @@ class Config{
     static const String vendor_registerUrl=baseUrl+'/authenticate/vendor_register';
     static const String notificationsUrl=baseUrl+'/authenticate/notifications';
 
+    static const String storeCreate=baseUrl+'/store/create-store';
+
 
 
 

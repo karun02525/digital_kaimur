@@ -15,6 +15,7 @@ class _RegisterStoreState extends State<RegisterStore> {
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 2.0,
+        elevation: 0.0,
         title: TextWidget(title: "Add Store", fontSize: AppFonts.toolbarSize,isBold: true),
       ),
       body: RegistrationFormWidget(),
